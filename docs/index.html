@@ -1,16 +1,9 @@
-<!-- docs/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RSS Feed Reader</title>
-
-  <!-- Fira Code Font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet" />
-
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -18,20 +11,13 @@
     <h1>RSS Feed Reader</h1>
   </header>
 
-  <div id="font-selector">
-    <label for="fontFamily">Choose Font:&nbsp;</label>
-    <select id="fontFamily">
-      <option value="'Fira Code', monospace" selected>Fira Code</option>
-      <option value="monospace">Monospace</option>
-      <option value="sans-serif">Sans Serif</option>
-      <option value="serif">Serif</option>
-    </select>
+  <div class="container">
+    <aside id="sidebar">
+      <h2>Feeds</h2>
+      <div id="feed-list" role="list"></div>
+    </aside>
+    <main id="articles-container" role="region" aria-live="polite"></main>
   </div>
-
-  <main>
-    <div id="feed-list" role="list"></div>
-    <div id="articles-container" role="region" aria-live="polite"></div>
-  </main>
 
   <script src="app.js"></script>
 </body>

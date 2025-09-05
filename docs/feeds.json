@@ -1,0 +1,18 @@
+[
+        {
+                "name": "NYTimes Home",
+                "url": "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+        },
+        {
+                "name": "BBC World",
+                "url": "http://feeds.bbci.co.uk/news/world/rss.xml"
+        },
+        {
+                "name": "Star of Mysore",
+                "url": "https://starofmysore.com/feed/"
+        },
+        {
+                "name": "OpenAI News",
+                "url": "https://openai.com/news/rss.xml"
+        }
+]

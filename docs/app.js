@@ -1,27 +1,20 @@
-// docs/app.js
-
 const API_ROOT = 'https://feed-j1wdk7w1t-subramanyaj7-6620s-projects.vercel.app/api/feed';
 
-// Your list of feeds here
-const FEEDS = [
-        { name: 'NYTimes Home', url: 'https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml' },
-        { name: 'BBC World', url: 'http://feeds.bbci.co.uk/news/world/rss.xml' }
-];
-
+let FEEDS = [];
 const feedListElem = document.getElementById('feed-list');
 const articlesContainer = document.getElementById('articles-container');
-const fontSelector = document.getElementById('fontFamily');
+let openFeedIndex = null;
 
-let openFeedIndex = null; // Currently expanded feed index
-
-// Set initial font family from selector
-function updateFontFamily() {
-        document.body.style.fontFamily = fontSelector.value;
+// Load feeds.json dynamically
+async function loadFeeds() {
+        try {
+                const res = await fetch('feeds.json');
+                FEEDS = await res.json();
+                renderFeedList();
+        } catch (err) {
+                console.error("Failed to load feeds.json", err);
+        }
 }
-fontSelector.addEventListener('change', () => {
-        updateFontFamily();
-});
-updateFontFamily();
 
 // Render list of feeds with article counts
 function renderFeedList() {
@@ -47,7 +40,6 @@ function renderFeedList() {
 
                 // Fetch article count
                 const requestUrl = `${API_ROOT}?url=${encodeURIComponent(feed.url)}`;
-                console.log("Fetching count from:", requestUrl);
                 fetch(requestUrl)
                         .then(res => res.json())
                         .then(data => {
@@ -100,7 +92,6 @@ function setAriaExpanded(idx, expanded) {
 function loadAndRenderArticles(idx) {
         articlesContainer.innerHTML = '<p>Loading articles…</p>';
         const requestUrl = `${API_ROOT}?url=${encodeURIComponent(FEEDS[idx].url)}`;
-        console.log("Fetching articles from:", requestUrl);
         fetch(requestUrl)
                 .then(res => res.json())
                 .then(data => {
@@ -112,7 +103,7 @@ function loadAndRenderArticles(idx) {
                 });
 }
 
-// Render list of articles
+// Render list of articles (no images anymore)
 function renderArticles(articles) {
         articlesContainer.innerHTML = '';
         if (!articles || articles.length === 0) {
@@ -137,15 +128,7 @@ function renderArticles(articles) {
                 h3.appendChild(link);
                 art.appendChild(h3);
 
-                // Image if available
-                if (article.imageUrl) {
-                        const img = document.createElement('img');
-                        img.src = article.imageUrl;
-                        img.alt = article.title || 'Article image';
-                        art.appendChild(img);
-                }
-
-                // Summary or content
+                // Summary or content only
                 const contentDiv = document.createElement('div');
                 contentDiv.className = 'article-content';
                 contentDiv.innerHTML = article.description || article['content:encoded'] || article.content || '';
@@ -159,5 +142,5 @@ function renderArticles(articles) {
 
 // Initialize
 window.onload = () => {
-        renderFeedList();
+        loadFeeds();
 };
