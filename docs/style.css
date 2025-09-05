@@ -1,0 +1,95 @@
+/* docs/style.css */
+body {
+  background-color: #121212;
+  color: #e0e0e0;
+  font-family: 'Fira Code', monospace;
+  margin: 0;
+  padding: 0;
+}
+
+header h1 {
+  text-align: center;
+  padding: 1rem;
+  margin: 0;
+  border-bottom: 1px solid #333;
+}
+
+#font-selector {
+  margin: 1rem auto;
+  max-width: 600px;
+  text-align: center;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+  padding: 1rem;
+}
+
+#feed-list {
+  margin-bottom: 2rem;
+}
+
+.feed-bar {
+  background-color: #242424;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.feed-bar:hover {
+  background-color: #333333;
+}
+
+.feed-bar .article-count {
+  background-color: #444444;
+  border-radius: 16px;
+  padding: 0 0.75rem;
+  font-size: 0.9rem;
+  color: #bbb;
+}
+
+.article-list {
+  background-color: #1e1e1e;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.article {
+  margin-bottom: 1rem;
+}
+
+.article h3 {
+  margin-top: 0;
+  font-weight: 700;
+}
+
+.article img {
+  max-width: 100%;
+  max-height: 320px;
+  display: block;
+  margin: 0.5rem 0;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.article p {
+  line-height: 1.4;
+  color: #ccc;
+  font-size: 0.95rem;
+}
+
+select {
+  font-size: 1rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+}
