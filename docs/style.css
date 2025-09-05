@@ -126,3 +126,14 @@ main#articles-container {
 	font-size: 0.95rem;
 	text-align: justify;
 }
+
+/* Hide sidebar when collapsed */
+aside#sidebar.collapsed {
+  display: none;
+}
+
+/* Make articles container full width when sidebar collapsed */
+aside#sidebar.collapsed + main#articles-container {
+  flex: 1 1 100%;
+  width: 100%;
+}
