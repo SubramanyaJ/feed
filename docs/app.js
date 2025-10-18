@@ -61,6 +61,7 @@ function renderFeedList() {
 
 // Load and render articles
 function loadAndRenderArticles(idx) {
+    document.getElementById('feed-title').textContent = FEEDS[idx].name;
     articlesContainer.innerHTML = '<p>Loading articles…</p>';
     const requestUrl = `${API_ROOT}?url=${encodeURIComponent(FEEDS[idx].url)}`;
     fetch(requestUrl)
@@ -90,18 +91,18 @@ function renderArticles(articles) {
         art.className = 'article';
 
         const h3 = document.createElement('h3');
-        const link = document.createElement('a');
-        link.href = article.link || '#';
-        link.textContent = article.title || 'Untitled';
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        h3.appendChild(link);
+        h3.textContent = article.title || 'Untitled';
+        h3.style.cursor = 'pointer';
         art.appendChild(h3);
 
         const contentDiv = document.createElement('div');
         contentDiv.className = 'article-content';
         contentDiv.innerHTML = article.description || article['content:encoded'] || article.content || '';
         art.appendChild(contentDiv);
+
+        art.addEventListener('click', () => {
+            window.open(article.link, '_blank');
+        });
 
         list.appendChild(art);
     });

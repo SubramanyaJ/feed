@@ -1,6 +1,6 @@
 [
         {
-                "name": "NYTimes Home",
+                "name": "The New York Times",
                 "url": "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
         },
         {
@@ -8,11 +8,23 @@
                 "url": "http://feeds.bbci.co.uk/news/world/rss.xml"
         },
         {
-                "name": "Star of Mysore",
-                "url": "https://starofmysore.com/feed/"
+                "name": "Sky Sports",
+                "url": "https://www.skysports.com/rss/12040"
         },
-	{
-                "name": "Hacker News",
-                "url": "https://news.ycombinator.com/rss"
+        {
+                "name": "Science Magazine",
+                "url": "https://feeds.science.org/rss/science.xml"
+        },
+        {
+                "name": "LiveScience",
+                "url": "https://www.livescience.com/feeds.xml"
+        },
+        {
+                "name": "IGN",
+                "url": "https://www.ign.com/rss/articles/feed"
+        },
+        {
+                "name": "Eye Football",
+                "url": "https://www.eyefootball.com/rss_news_main.xml"
         }
 ]
