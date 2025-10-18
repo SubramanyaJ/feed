@@ -14,9 +14,5 @@
 	{
                 "name": "Hacker News",
                 "url": "https://news.ycombinator.com/rss"
-        },
-        {
-                "name": "OpenAI News",
-                "url": "https://openai.com/news/rss.xml"
         }
 ]

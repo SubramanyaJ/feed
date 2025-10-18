@@ -93,7 +93,6 @@ aside#sidebar h2 {
 main#articles-container {
   width: 100%;
   padding: 1rem;
-  overflow-y: auto;
   text-align: justify;
 }
 
@@ -157,8 +156,6 @@ main#articles-container {
 
   main#articles-container {
     flex: 1;
-    height: 100%;
-    overflow-y: auto;
     width: auto;
     padding: 1rem 2rem;
   }
