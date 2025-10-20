@@ -1,8 +1,9 @@
 /* Base styles */
 body {
-  background-color: #121212;
-  color: #e0e0e0;
+  background-color: #000000;
+  color: #f0f0f0;
   font-family: 'Fira Code', monospace;
+  font-weight: 200;
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -13,9 +14,9 @@ body {
 header {
   display: flex;
   align-items: center;
-  background-color: #1e1e1e;
+  background-color: #000000;
   border-bottom: 1px solid #333;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.5rem;
 }
 
 header h1 {
@@ -43,7 +44,7 @@ header h1 {
 aside#sidebar {
   width: 100%;
   max-height: 200px; /* height limit with scroll on mobile */
-  background-color: #1e1e1e;
+  background-color: #000000;
   border-bottom: 1px solid #333;
   padding: 1rem;
   overflow-y: auto;
@@ -59,6 +60,7 @@ aside#sidebar h2 {
   font-size: 1.2rem;
   border-bottom: 1px solid #333;
   padding-bottom: 0.5rem;
+  text-align: center;
 }
 
 #feed-list {
@@ -66,7 +68,8 @@ aside#sidebar h2 {
 }
 
 .feed-bar {
-  background-color: #242424;
+  background-color: #101010;
+  border: 1px solid #333;
   padding: 0.8rem;
   margin-bottom: 0.5rem;
   border-radius: 6px;
@@ -97,7 +100,7 @@ main#articles-container {
 }
 
 .article-list {
-  background-color: #1e1e1e;
+  background-color: #000000;
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 2rem;
@@ -109,7 +112,7 @@ main#articles-container {
   padding: 1rem;
   border: 1px solid #333;
   border-radius: 6px;
-  background-color: #181818;
+  background-color: #101010;
 }
 
 .article h3 {
@@ -143,7 +146,7 @@ main#articles-container {
 
   aside#sidebar {
     width: 250px;
-    min-width: 250px;
+    min-width: 200px;
     max-height: none;
     border-right: 1px solid #333;
     border-bottom: none;
@@ -159,7 +162,7 @@ main#articles-container {
   main#articles-container {
     flex: 1;
     width: auto;
-    padding: 1rem 2rem;
+    padding: 0.5rem 0.5rem;
     overflow-x: hidden;
     min-width: 0;
   }

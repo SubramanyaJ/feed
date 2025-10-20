@@ -100,6 +100,13 @@ function renderArticles(articles) {
         contentDiv.innerHTML = article.description || article['content:encoded'] || article.content || '';
         art.appendChild(contentDiv);
 
+        /**
+         * TODO: Fix this
+         * I need to fetch the complete article data
+         * And then render it inside my own page.
+         * The question is whether I spawn a different page for it
+         * or expand the feed item.
+         */
         art.addEventListener('click', () => {
             window.open(article.link, '_blank');
         });
