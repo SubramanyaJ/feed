@@ -1,0 +1,48 @@
+@font-face {
+	font-family: "Neosevka";
+	src: url("./assets/Neosevka.woff2") format("woff2")
+}
+
+body {
+	background-color: #141312;
+	color: #F0F0F0;
+	font-family: "Neosevka";
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h3 {
+	text-align: center;
+	color: #00F0F0;
+	font-size: 0.95rem;
+}
+
+.header_bar {
+	border: 2px solid #C0C0C0;
+	margin: 10px 0px;
+	width: 90%;
+	position: sticky;
+	top: 0;
+	background-color: #141312;
+}
+
+.feed-content {
+	border: 2px solid #C0C0C0;
+	margin: 10px 0px;
+	width: 90%;
+}  
+
+.dataheader {
+	color: #ff6700;
+	font-size: 1.2rem;
+}
+
+.data {
+	text-align: left;
+	padding: 0px 5%;
+	font-size: 1.2rem;
+}
