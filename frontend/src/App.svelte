@@ -1,44 +1,102 @@
 <script>
-  let selector_bar_on = false;
-  function toggleList() {
-    selector_bar_on = !selector_bar_on;
+// const API_ROOT = 'https://feed-j1wdk7w1t-subramanyaj7-6620s-projects.vercel.app/api/feed';
+  const API_ROOT = 'http://localhost:3001/api/feed';
+
+let selector_bar_on = true;
+
+let feeds = [];
+let feedContent = [];
+let currentFeedName = "";
+
+function toggleList() {
+	selector_bar_on = !selector_bar_on;
+}
+
+async function loadFeeds() {
+  try {
+    const res = await fetch('feeds.json');
+	console.log(res);
+    const data = await res.json();
+    feeds = data;
+  } catch (err) {
+    console.error("Error loading feeds.json", err);
   }
+}
+
+async function loadFeedArticles(feed) {
+  selector_bar_on = false;
+  currentFeedName = feed.name;
+  feedContent = [];
+
+  const requestUrl = `${API_ROOT}?url=${encodeURIComponent(feed.url)}`;
+
+  try {
+    const res = await fetch(requestUrl);
+    const data = await res.json();
+
+    if (data.articles) {
+      feedContent = data.articles.map(a => ({
+        heading: a.title || "Untitled",
+        data: a.description || a["content:encoded"] || a.content || "",
+        link: a.link
+      }));
+    }
+  } catch (err) {
+    console.error("Error loading articles", err);
+  }
+}
+
+function openArticle(link) {
+  window.open(link, "_blank");
+}
+
+loadFeeds();
 </script>
 
 <div class="root">
 
-  <!-- List of feeds -->
-  {#if selector_bar_on}
-  <div class="header_bar">
-	<h3 on:click={toggleList}>
-	  List of feeds
-	</h3>
-  </div>
+{#if selector_bar_on}
 
-  <h3 on:click={toggleList} class="dataheader">
-	One
+<div class="header">
+
+  <h3 style="color:#F0F0F0;">
+    List of feeds
   </h3>
-  
-  {/if}
+</div>
 
+<div id="feedlist-container">
+  {#each feeds as feed}
+    <h3 class="dataheader" on:click={() => loadFeedArticles(feed)}>
+      {feed.name}
+    </h3>
+  {/each}
+</div>
 
-  <!-- Content of feeds -->
-  {#if !selector_bar_on}
-  <div class="header_bar">
-    <h3 on:click={toggleList}>
-	  Feed Name
-	</h3>
-  </div>
+{/if}
 
-  
-  <div class="feed-content">
-	<h3 class="dataheader">
-	  Feed Heading
-	</h3>
-	<p class="data">
-	  Nullam eu ante vel est convallis dignissim.  Fusce suscipit, wisi nec facilisis facilisis, est dui fermentum leo, quis tempor ligula erat quis odio.  Nunc porta vulputate tellus.  Nunc rutrum turpis sed pede.  Sed bibendum.  Aliquam posuere.  Nunc aliquet, augue nec adipiscing interdum, lacus tellus malesuada massa, quis varius mi purus non odio.  Pellentesque condimentum, magna ut suscipit hendrerit, ipsum augue ornare nulla, non luctus diam neque sit amet urna.  Curabitur vulputate vestibulum lorem.  Fusce sagittis, libero non molestie mollis, magna orci ultrices dolor, at vulputate neque nulla lacinia eros.  Sed id ligula quis est convallis tempor.  Curabitur lacinia pulvinar nibh.  Nam a sapien.
-	</p>
-  </div>
-  {/if}
+{#if !selector_bar_on}
+
+<div class="header">
+  <h3 on:click={toggleList}>
+    {currentFeedName}
+  </h3>
+</div>
+
+<div class="data-container">
+
+  {#each feedContent as item}
+    <div class="feed-content">
+      <h3 class="dataheader-title" on:click={() => openArticle(item.link)}>
+        {item.heading}
+      </h3>
+      <p class="data">
+        {@html item.data}
+      </p>
+    </div>
+  {/each}
+
+</div>
+
+{/if}
 
 </div>

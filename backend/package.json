@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": "Subramanya J",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "dev": "node main.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "fast-xml-parser": "^5.5.5",
+    "he": "^1.2.0",
+    "node-fetch": "^2.7.0"
+  }
+}

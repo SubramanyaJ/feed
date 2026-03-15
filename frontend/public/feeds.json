@@ -1,0 +1,23 @@
+[
+  {
+    "name": "The New York Times",
+    "url": "https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml"
+  },
+  {
+    "name": "BBC World",
+    "url": "http://feeds.bbci.co.uk/news/world/rss.xml"
+  },
+  {
+    "name": "LiveScience",
+    "url": "https://www.livescience.com/feeds.xml"
+  },
+  {
+    "name": "It's FOSS",
+    "url": "https://itsfoss.com/rss/"
+  },
+  {
+	"name": "Star of Mysore",
+	"url": "https://starofmysore.com/feed/"
+  }
+
+]
