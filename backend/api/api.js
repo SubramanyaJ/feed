@@ -18,16 +18,56 @@ function decode(text) {
     return he.decode(text);
 }
 
+function extractImage(item, html) {
+
+    if (item.enclosure?.url && item.enclosure?.type?.startsWith("image")) {
+        return item.enclosure.url;
+    }
+
+    if (Array.isArray(item.enclosure)) {
+        const img = item.enclosure.find(e => e.url && e.type?.startsWith("image"));
+        if (img) return img.url;
+    }
+
+    if (item["media:thumbnail"]?.url) {
+        return item["media:thumbnail"].url;
+    }
+
+    if (Array.isArray(item["media:thumbnail"])) {
+        const thumb = item["media:thumbnail"][0];
+        if (thumb?.url) return thumb.url;
+    }
+
+    if (item["media:content"]?.url) {
+        return item["media:content"].url;
+    }
+
+    if (Array.isArray(item["media:content"])) {
+        const media = item["media:content"].find(m => m.url);
+        if (media) return media.url;
+    }
+
+    if (html) {
+        const match = html.match(/<img[^>]+src=["']([^"']+)["']/i);
+        if (match) return he.decode(match[1]);
+    }
+
+    return "";
+}
+
+function stripImageTags(html) {
+    if (!html) return "";
+    return html.replace(/<img[^>]*>/gi, "");
+}
+
 function normalizeArticle(item) {
 
     let link = "";
 
-    // RSS
     if (typeof item.link === "string") {
         link = item.link;
     }
 
-    // Atom
     if (!link && Array.isArray(item.link)) {
         const alt = item.link.find(l => l.rel === "alternate") || item.link[0];
         if (alt && alt.href) link = alt.href;
@@ -39,13 +79,16 @@ function normalizeArticle(item) {
 
     const title = decode(item.title || "Untitled");
 
-    const description = decode(
+    const rawDescription =
         item.description ||
         item.summary ||
         item['content:encoded'] ||
         item.content ||
-        ""
-    );
+        "";
+
+    const image = extractImage(item, rawDescription);
+
+    const description = decode(stripImageTags(rawDescription));
 
     const pubDate =
         item.pubDate ||
@@ -56,6 +99,7 @@ function normalizeArticle(item) {
     return {
         title,
         link,
+        image,
         description,
         pubDate
     };
