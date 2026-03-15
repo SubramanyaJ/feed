@@ -1,6 +1,5 @@
 <script>
-// const API_ROOT = 'https://feed-j1wdk7w1t-subramanyaj7-6620s-projects.vercel.app/api/feed';
-  const API_ROOT = 'http://localhost:3001/api/feed';
+  const API_ROOT = 'https://feed-backend-ashy.vercel.app/api/api';
 
 let selector_bar_on = true;
 
